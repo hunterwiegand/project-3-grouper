@@ -20,10 +20,13 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Handlebars
-app.engine("handlebars", exphbs({
-    defaultLayout: "main"
-}));
-app.set("view-engine", "handlebars");
+app.engine(
+    "handlebars",
+    exphbs({
+      defaultLayout: "main"
+    })
+  );
+  app.set("view engine", "handlebars");
 
 //Routes
 require("./routes/apiRoutes")(app);
@@ -46,7 +49,7 @@ io.on("connection", function (socket) {
 //Start the server while syncing our models
 db.sequelize.sync(syncOptions).then(function () {
     var server = http.listen(PORT, function () {
-        console.log("==> 🌎 Listening on port %s. Visit httl://localhost:%s/ in your browser.", PORT, PORT);
+        console.log("==> 🌎 Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
     });
 });
 //Export app
